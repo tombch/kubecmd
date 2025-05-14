@@ -45,6 +45,7 @@ def create_job_object(job_id: str, image: str, args: list[str]) -> client.V1Job:
                 fs_group=1000,
             ),
             restart_policy="Never",
+            node_selector={"hub.jupyter.org/node-purpose": "user"},
             containers=[container],
         ),
     )
