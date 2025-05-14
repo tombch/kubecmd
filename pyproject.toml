@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kubecmd"
+version = "0.1.0"
+description = "Kubernetes Command Runner"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "GPL-3.0-or-later"
+authors = [{ name = "Thomas Brier", email = "t.o.brier@bham.ac.uk" }]
+maintainers = [{ name = "Thomas Brier", email = "t.o.brier@bham.ac.uk" }]
+keywords = ["kubernetes"]
+classifiers = [
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+]
+dependencies = ["kubernetes~=32.0.1"]
+
+[project.scripts]
+kubecmd = "kubecmd.cli:main"
+
+[project.urls]
+GitHub = "https://github.com/tombch/kubecmd"
