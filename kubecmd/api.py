@@ -36,9 +36,8 @@ def create_job_object(job_id: str, image: str, args: list[str]) -> client.V1Job:
 
     # Create a spec template
     template = client.V1PodTemplateSpec(
+        metadata=client.V1ObjectMeta(labels={"app": "kubecmd"}),
         spec=client.V1PodSpec(
-            hostname=job_id,
-            subdomain="kubecmd",  # TODO: What is this for
             security_context=client.V1PodSecurityContext(
                 run_as_non_root=True,
                 run_as_user=1000,
@@ -47,7 +46,7 @@ def create_job_object(job_id: str, image: str, args: list[str]) -> client.V1Job:
             ),
             restart_policy="Never",
             containers=[container],
-        )
+        ),
     )
 
     # Create the job specification
@@ -73,4 +72,7 @@ def create_job(api_instance: client.BatchV1Api, job: client.V1Job) -> None:
     Create a Kubernetes job.
     """
 
-    api_instance.create_namespaced_job(body=job, namespace="kubecmd")
+    api_instance.create_namespaced_job(
+        body=job,
+        namespace="default",
+    )
