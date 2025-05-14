@@ -34,7 +34,7 @@ def main():
     logging.info(f"Command: {args.command}")
 
     # Load config and create a Kubernetes client
-    config.load_kube_config()
+    config.load_incluster_config()
     batch_v1 = client.BatchV1Api()
 
     # Create a job ID and object
